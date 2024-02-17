@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BookTest {
     @Test
     void shouldAdd2Numbers() {
-        int firstNumber = 3;
+        int firstNumber = 2;
         int secondNumber = 4;
         int actualResult = 6;
 
