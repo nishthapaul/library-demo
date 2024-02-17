@@ -17,6 +17,12 @@ pipeline {
                 }
           }
 
+          stage ("Run tests") {
+                steps {
+                    sh 'mvn test'
+                }
+          }
+
           stage ("Build & Run Code") {
                 steps {
                     sh 'docker build -t nishthapaul/library-project .'
