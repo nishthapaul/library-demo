@@ -9,5 +9,6 @@ public class Main {
         System.out.println("Hello and welcome!");
 
         new Book().title();
+        new AWTCounter();
     }
 }

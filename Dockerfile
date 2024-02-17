@@ -2,7 +2,7 @@
 FROM openjdk:11
 #
 # # Set the working directory inside the container
-# WORKDIR /app
+WORKDIR /app
 
 # Copy the Java file from the repository to the container
 COPY target/library-demo-1.0-SNAPSHOT.jar library-demo.jar
