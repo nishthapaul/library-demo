@@ -17,11 +17,11 @@ pipeline {
                 }
           }
 
-//           stage ("Build & Run Code") {
-//                 steps {
-//                     sh 'docker build -t nishthapaul/hello-world-jenkin-project .'
-//                 }
-//           }
+          stage ("Build & Run Code") {
+                steps {
+                    sh 'docker build -t nishthapaul/library-project .'
+                }
+          }
 
 //           stage ("Push docker image") {
 //                 steps {
