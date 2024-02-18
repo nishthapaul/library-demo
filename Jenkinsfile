@@ -49,11 +49,11 @@ pipeline {
             post {
         failure {
             def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
-            mail(
-                to: 'paulnishtha19@gmail.com',
+            mail bcc: '', cc: '', from: '', replyTo: '', 
+                to: 'paulnishtha19@gmail.com', 
                 subject: "Unstable build in Jenkins: ${env.PROJECT_NAME} - #${env.BUILD_NUMBER}",
-                body: "Check console output at ${jenkinsBuildUrl} to view the results.\n\n${CHANGES}\n\n------------------"
-            )
+                body: "Check console output at ${jenkinsBuildUrl} to view the results."
+            
             // mail bcc: '', body: 'Check console output at ' + env.BUILD_URL + 'to view the results. \n\n ${CHANGES} \n\n ------------------', cc: '', from: '', replyTo: '', subject: 'Unstable build in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER', to: 'paulnishtha19@gmail.com'
         }
     }
