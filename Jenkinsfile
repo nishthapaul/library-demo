@@ -49,7 +49,7 @@ pipeline {
         failure {
             script {
                 def jenkinsBuildUrl = env.JENKINS_BUILD_URL
-                mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: 'Not working Library Project', body: "Check console output at ${jenkinsBuildUrl} to view the results."
+                mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: "Unstable build in Jenkins: ${env.PROJECT_NAME} - #${env.BUILD_NUMBER}", body: "Check console output at ${jenkinsBuildUrl} to view the results."
             }
             //     mail(
             //         to: 'paulnishtha19@gmail.com',
