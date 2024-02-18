@@ -3,7 +3,6 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
         DOCKERHUB_USERNAME='nishthapaul'
-        JENKINS_BUILD_URL = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
     }
     stages {
           stage ("Clone Git") {
@@ -48,7 +47,7 @@ pipeline {
     post {
         failure {
             script {
-                def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
+                def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/console"
                 mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: "Unstable build in Jenkins: ${env.JOB_NAME} - #${env.BUILD_NUMBER}", body: "Check console output at ${jenkinsBuildUrl} to view the results."
             }
             //     mail(
