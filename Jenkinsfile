@@ -48,7 +48,7 @@ pipeline {
     post {
         failure {
             script {
-                def jenkinsBuildUrl = env.JENKINS_BUILD_URL
+                def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
                 mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: "Unstable build in Jenkins: ${env.JOB_NAME} - #${env.BUILD_NUMBER}", body: "Check console output at ${jenkinsBuildUrl} to view the results."
             }
             //     mail(
