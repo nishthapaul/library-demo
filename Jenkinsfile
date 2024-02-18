@@ -29,14 +29,14 @@ pipeline {
                 }
           }
 
-//           stage ("Push docker image") {
-//                 steps {
-//                     script {
-//                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_CREDENTIALS'
-//                     sh 'docker push nishthapaul/hello-world-jenkin-project'
-//                     }
-//                 }
-//           }
+          stage ("Push docker image") {
+                steps {
+                    script {
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_CREDENTIALS'
+                    sh 'docker push nishthapaul/hello-world-jenkin-project'
+                    }
+                }
+          }
 //
 //           stage ("Run Ansible Playbook") {
 //                 steps {
@@ -46,17 +46,18 @@ pipeline {
     }
     post {
         failure {
-            script {
-                def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
-                mail(
-                    to: 'paulnishtha19@gmail.com',
-                    subject: "Unstable build in Jenkins: ${env.PROJECT_NAME} - #${env.BUILD_NUMBER}",
-                    body: "Check console output at ${jenkinsBuildUrl} to view the results.\n\n${CHANGES}\n\n------------------"
-                )
-                // mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: 'Not working Library Project',body: "Check console output at ${jenkinsBuildUrl} to view the results."
+            mail bcc: '', cc: '', from: '', replyTo: '', subject: 'New Not working Library Project', body: 'Check console output at $DOCKERHUB_USERNAME to view the results.', to: 'paulnishtha19@gmail.com'
+            // script {
+            //     def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
+            //     mail(
+            //         to: 'paulnishtha19@gmail.com',
+            //         subject: "Unstable build in Jenkins: ${env.PROJECT_NAME} - #${env.BUILD_NUMBER}",
+            //         body: "Check console output at ${jenkinsBuildUrl} to view the results.\n\n${CHANGES}\n\n------------------"
+            //     )
+            //     // mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: 'Not working Library Project',body: "Check console output at ${jenkinsBuildUrl} to view the results."
             
-            // mail bcc: '', body: 'Check console output at ' + env.BUILD_URL + 'to view the results. \n\n ${CHANGES} \n\n ------------------', cc: '', from: '', replyTo: '', subject: 'Unstable build in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER', to: 'paulnishtha19@gmail.com'
-            }
+            // // mail bcc: '', body: 'Check console output at ' + env.BUILD_URL + 'to view the results. \n\n ${CHANGES} \n\n ------------------', cc: '', from: '', replyTo: '', subject: 'Unstable build in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER', to: 'paulnishtha19@gmail.com'
+            // }
         }
     }
 }
