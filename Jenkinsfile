@@ -46,8 +46,6 @@ pipeline {
     }
     post {
         failure {
-            post {
-        failure {
             def jenkinsBuildUrl = "http://localhost:8080/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/"
             mail bcc: '', cc: '', from: '', replyTo: '', to: 'paulnishtha19@gmail.com', subject: 'Not working Library Project',body: 'Check console output at ${jenkinsBuildUrl} to view the results.'
             
