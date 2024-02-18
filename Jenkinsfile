@@ -13,7 +13,7 @@ pipeline {
 
           stage ("Build via Maven") {
                 steps {
-                    sh 'mvn clean install'
+                    sh 'mvn clean installl'
                 }
           }
 
@@ -43,5 +43,10 @@ pipeline {
 //                     sh 'ansible-playbook -i inventory deploy.yml'
 //                 }
 //           }
+    }
+    post {
+        failure {
+            mail bcc: '', body: 'Check console output at ' + env.BUILD_URL + 'to view the results. \n\n ${CHANGES} \n\n ------------------', cc: '', from: '', replyTo: '', subject: 'Unstable build in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER', to: 'paulnishtha19@gmail.com'
+        }
     }
 }
